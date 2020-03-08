@@ -1,5 +1,5 @@
 import React from 'react';
-import Message from "./components/message/Message";
+import Message from "./components/Message/Message";
 import MyName from "./components/MyName/MyName";
 import styles from "./Container.module.css";
 
