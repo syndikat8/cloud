@@ -1,0 +1,10 @@
+.qualities {
+    font-size: 18px;
+    color: white;
+
+}
+
+
+.paint:nth-child(2) {
+    color: gold;
+}

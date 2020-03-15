@@ -2,6 +2,7 @@ import React from 'react';
 import Message from "./components/Message/Message";
 import MyName from "./components/MyName/MyName";
 import styles from "./Container.module.css";
+import Qualities from "./components/Qualities/Qualities";
 
 
 const App = () => {
@@ -13,7 +14,7 @@ const App = () => {
   ];
 
 
-  let newNameQualities = nameQualities.map( q => <li className={styles.paint} key={q.id}> {q.qualitie} </li>);
+
 
   return (
 
@@ -21,7 +22,7 @@ const App = () => {
       <div className={styles.container}>
 
         <MyName/>
-        <div><ul>{newNameQualities}</ul> </div>
+       <Qualities nameQualities={nameQualities} />
         <Message/>
       </div>
     </div>
