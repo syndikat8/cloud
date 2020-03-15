@@ -2,8 +2,15 @@
     padding: 50px;
     width: 800px;
     margin: 0   auto;
-    background: url("https://mobile-s8600.clan.su/_ph/3/858409256.jpg") no-repeat center top / cover;
+    background: url("https://i1.wallbox.ru/wallpapers/main/201133/temno-ochen-temno-f3cbb64.jpg") no-repeat center top / cover;
     height: 100vh;
 
 }
 
+ul {
+    color: cornsilk;
+}
+
+.paint:nth-child(2) {
+    color: chocolate;
+}
