@@ -6,21 +6,14 @@ import Qualities from "./components/Qualities/Qualities";
 
 
 const App = () => {
-
   let nameQualities = [
     {qualitie: "Punctual", id: "1"},
     {qualitie: "Sportsman", id: "2"},
     {qualitie: "Сonfident", id: "3"}
   ];
-
-
-
-
   return (
-
     <div className="App">
       <div className={styles.container}>
-
         <MyName/>
        <Qualities nameQualities={nameQualities} />
         <Message/>
