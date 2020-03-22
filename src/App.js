@@ -3,6 +3,7 @@ import Message from "./components/Message/Message";
 import MyName from "./components/MyName/MyName";
 import styles from "./Container.module.css";
 import Qualities from "./components/Qualities/Qualities";
+import Form from "./components/Form/Form";
 
 
 const App = () => {
@@ -17,6 +18,7 @@ const App = () => {
         <MyName/>
        <Qualities nameQualities={nameQualities} />
         <Message/>
+        <Form/>
       </div>
     </div>
   );
