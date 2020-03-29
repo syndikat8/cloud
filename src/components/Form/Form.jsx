@@ -13,23 +13,23 @@ class Form  extends  React.Component{
 
   state = {
     spanNumber: 10,
-    newName: "",
+    countValueInput: [],
   };
 
   addClickHandler = () => {
     let text = this.newMessageText.current.value;
     this.newMessageText.current.value = "";
-    this.addNewName(`Привет ${text} `);
-  this.setState({
+    this.addNewMessag(`Привет ${text} `);
+   this.setState({
     spanNumber: this.state.spanNumber + 1,
   });
   };
 
 
-  addNewName = (newName) => {
-    let names = [...this.state.newName, newName];
+  addNewMessag = (count) => {
+    let counts = [...this.state.countValueInput, count];
     this.setState({
-      newName: names
+      countValueInput: counts
     })
   };
 
@@ -40,7 +40,7 @@ class Form  extends  React.Component{
         <Span spanNumber={this.state.spanNumber} />
         <Input newMessageText={this.newMessageText}/>
         <Button click={this.addClickHandler}/>
-        <InputIN newName={this.state.newName}/>
+        <InputIN countValueInput={this.state.countValueInput}/>
       </div>
     )
   }

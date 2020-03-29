@@ -6,7 +6,7 @@ class InputIN  extends  React.Component{
 
 
   render() {
-    return <p>{this.props.newName}</p>
+    return <p>{this.props.countValueInput}</p>
   }
 }
 
