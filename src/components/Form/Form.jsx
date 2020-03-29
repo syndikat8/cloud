@@ -19,7 +19,7 @@ class Form  extends  React.Component{
   addClickHandler = () => {
     let text = this.newMessageText.current.value;
     this.newMessageText.current.value = "";
-    this.addNewName(text + " ");
+    this.addNewName(`Привет ${text} `);
   this.setState({
     spanNumber: this.state.spanNumber + 1,
   });
