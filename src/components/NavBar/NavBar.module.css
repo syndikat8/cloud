@@ -1,0 +1,9 @@
+nav a {
+    color: blanchedalmond;
+    margin: 10px;
+}
+
+nav {
+    display: flex;
+    justify-content: flex-end;
+}

@@ -26,6 +26,8 @@ class Form  extends  React.Component{
   onTitleChanged = (e) => {
     this.setState({title: e.currentTarget.value})
   };
+
+
   addNewMessag = (count) => {
     let counts = [...this.state.countValueInput, count];
     this.setState({
@@ -40,8 +42,7 @@ class Form  extends  React.Component{
         <Input colorInput={this.state.colorInput}
                addClickHandler={this.addClickHandler}
                title={this.state.title}
-               onTitleChanged={this.onTitleChanged}
-        />
+               onTitleChanged={this.onTitleChanged}/>
         <Button click={this.addClickHandler}/>
         <InputIN countValueInput={this.state.countValueInput}/>
       </div>
