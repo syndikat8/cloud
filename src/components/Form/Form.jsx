@@ -5,27 +5,27 @@ import Input from "./Input/Input";
 import Span from "./Span/Span";
 import InputIN from "./InputIN/InputIN";
 
-
 class Form  extends  React.Component{
-
-
-  newMessageText = React.createRef();
 
   state = {
     spanNumber: 10,
-    countValueInput: [],
+    countValueInput: "",
+    colorInput: "paint",
+    title: ""
   };
 
   addClickHandler = () => {
-    let text = this.newMessageText.current.value;
-    this.newMessageText.current.value = "";
-    this.addNewMessag(`Привет ${text} `);
-   this.setState({
-    spanNumber: this.state.spanNumber + 1,
-  });
+    let text = this.state.title;
+    if (text === "") {
+      this.setState({colorInput: "paint", spanNumber: this.state.spanNumber + 1})
+    } else {
+      this.addNewMessag(`Привет ${text} `);
+      this.setState({colorInput: "noPaint", spanNumber: this.state.spanNumber + 1,title: ""});
+    }
   };
-
-
+  onTitleChanged = (e) => {
+    this.setState({title: e.currentTarget.value})
+  };
   addNewMessag = (count) => {
     let counts = [...this.state.countValueInput, count];
     this.setState({
@@ -33,12 +33,15 @@ class Form  extends  React.Component{
     })
   };
 
-
   render() {
     return (
       <div className={styles.form}>
         <Span spanNumber={this.state.spanNumber} />
-        <Input newMessageText={this.newMessageText}/>
+        <Input colorInput={this.state.colorInput}
+               addClickHandler={this.addClickHandler}
+               title={this.state.title}
+               onTitleChanged={this.onTitleChanged}
+        />
         <Button click={this.addClickHandler}/>
         <InputIN countValueInput={this.state.countValueInput}/>
       </div>

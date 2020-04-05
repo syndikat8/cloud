@@ -16,7 +16,7 @@ const App = () => {
     <div className="App">
       <div className={styles.container}>
         <MyName/>
-       <Qualities nameQualities={nameQualities} />
+        <Qualities nameQualities={nameQualities}/>
         <Message/>
         <Form/>
       </div>
