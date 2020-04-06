@@ -1,18 +1,19 @@
 import React from 'react';
 import styles from './NavBar.module.css';
-
+import {NavLink} from "react-router-dom";
 
 
 const NavBar = () => {
 
-  return  (
+  return (
     <nav className={styles.navBar}>
-      <div>
-        <a href="/form">Monday</a>
-      </div>
-      <div>
-        <a href="/all">Tuesday</a>
-      </div>
+      <NavLink className={styles.menuList} to="/all">
+        MENU
+        <div className={styles.drop}>
+          <div><NavLink to="/form">Monday</NavLink></div>
+          <div><NavLink to="">Tuesday</NavLink></div>
+        </div>
+      </NavLink>
 
     </nav>
   )
