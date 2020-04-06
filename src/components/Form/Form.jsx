@@ -5,7 +5,7 @@ import Input from "./Input/Input";
 import Span from "./Span/Span";
 import InputIN from "./InputIN/InputIN";
 
-class Form  extends  React.Component{
+class Form extends React.Component {
 
   state = {
     spanNumber: 10,
@@ -20,29 +20,33 @@ class Form  extends  React.Component{
       this.setState({colorInput: "paint", spanNumber: this.state.spanNumber + 1})
     } else {
       this.addNewMessag(`Привет ${text} `);
-      this.setState({colorInput: "noPaint", spanNumber: this.state.spanNumber + 1,title: ""});
+      this.setState({colorInput: "noPaint", spanNumber: this.state.spanNumber + 1, title: ""});
     }
   };
+
+
   onTitleChanged = (e) => {
     this.setState({title: e.currentTarget.value})
   };
 
-
   addNewMessag = (count) => {
     let counts = [...this.state.countValueInput, count];
     this.setState({
-      countValueInput: counts
+      countValueInput: counts,
+
     })
   };
 
   render() {
     return (
       <div className={styles.form}>
-        <Span spanNumber={this.state.spanNumber} />
-        <Input colorInput={this.state.colorInput}
-               addClickHandler={this.addClickHandler}
-               title={this.state.title}
-               onTitleChanged={this.onTitleChanged}/>
+        <Span spanNumber={this.state.spanNumber}/>
+        <Input
+          colorInput={this.state.colorInput}
+          addClickHandler={this.addClickHandler}
+          title={this.state.title}
+          onTitleChanged={this.onTitleChanged}
+        />
         <Button click={this.addClickHandler}/>
         <InputIN countValueInput={this.state.countValueInput}/>
       </div>

@@ -8,6 +8,7 @@ import Form from "./components/Form/Form";
 import NavBar from "./components/NavBar/NavBar";
 import {HashRouter, Route} from "react-router-dom";
 
+
 const App = () => {
   let nameQualities = [
     {qualitie: "Punctual", id: "1"},
