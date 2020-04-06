@@ -6,7 +6,7 @@ import styles from "./Container.module.css";
 import Qualities from "./components/Qualities/Qualities";
 import Form from "./components/Form/Form";
 import NavBar from "./components/NavBar/NavBar";
-import {BrowserRouter, Route} from "react-router-dom";
+import {HashRouter, Route} from "react-router-dom";
 
 const App = () => {
   let nameQualities = [
@@ -16,7 +16,7 @@ const App = () => {
   ];
   return (
 
-    <BrowserRouter>
+    <HashRouter>
       <div className="App">
         <div className={styles.container}>
           <NavBar/>
@@ -26,7 +26,7 @@ const App = () => {
           <Route path="/form" component={Form}/>
         </div>
       </div>
-    </BrowserRouter>
+    </HashRouter>
   );
 };
 
