@@ -9,7 +9,7 @@ class Form extends React.Component {
 
   state = {
     spanNumber: 10,
-    countValueInput: "",
+    countValueInput: [],
     colorInput: "paint",
     title: ""
   };
@@ -26,7 +26,7 @@ class Form extends React.Component {
 
 
   onTitleChanged = (e) => {
-    this.setState({title: e.currentTarget.value})
+    this.setState({title: e.currentTarget.value, colorInput: ""})
   };
 
   addNewMessag = (count) => {
