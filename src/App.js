@@ -22,11 +22,11 @@ const App = () => {
       <div className="App">
         <div className={styles.container}>
           <NavBar/>
-          <Route path="/all" component={MyName}/>
+          <MyName/>
           <Route path="/all" render={() => <Qualities nameQualities={nameQualities}/> }/>
-          <Route path="/all" component={Message}/>
+          <Message/>
           <Route path="/form" component={Form}/>
-          <Route path="/enumerator" component={Enumerator}/>
+          <Route path="/enumerator" render={() => <Enumerator /> }/>
         </div>
       </div>
     </HashRouter>

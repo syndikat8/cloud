@@ -3,6 +3,7 @@ import '../../App.css';
 import TodoListHeader from "./TodoListHeader/TodoListHeader";
 import TodoListTasks from "./TodoListTasks/TodoListTasks";
 import TodoListFooter from "./TodoListFooter/TodoListFooter";
+import {restore, save} from "../../localStorge";
 
 class Enumerator extends React.Component {
 
@@ -14,23 +15,23 @@ class Enumerator extends React.Component {
 
   state = {
     tasks: [
-      // {id: 0, title: "JS", isDone: true, priority: "low"},
-      // {id: 1, title: "CSS", isDone: true, priority: "low"},
-      // {id: 2, title: "HTML", isDone: true, priority: "low"},
-      // {id: 3, title: "React", isDone: false, priority: "low"},
-      // {id: 4, title: "Sass", isDone: false, priority: "low"},
-      // {id: 5, title: "Redux", isDone: false, priority: "low"}
+      {id: 0, title: "JS", isDone: true, priority: "low"},
+      {id: 1, title: "CSS", isDone: true, priority: "low"},
+      {id: 2, title: "HTML", isDone: true, priority: "low"},
+      {id: 3, title: "React", isDone: false, priority: "low"},
+      {id: 4, title: "Sass", isDone: false, priority: "low"},
+      {id: 5, title: "Redux", isDone: false, priority: "low"}
     ],
     filterValue: "All"
   };
 
   saveState = () => {
-    localStorage.setItem("our-state", JSON.stringify(this.state))
+    save(this.state)
   }
 
   restoreState = () => {
     let state = this.state
-    let stateAsString = localStorage.getItem("our-state")
+    let stateAsString = restore()
     if (stateAsString) {
       state = JSON.parse(stateAsString);
     }
