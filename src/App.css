@@ -33,3 +33,12 @@ body {
 .enumerator {
     color: white;
 }
+
+.delit {
+    font-size: 15px;
+    font-weight: bolder;
+    color: black;
+    background: red;
+    border: none;
+    border-radius: 10px;
+}
