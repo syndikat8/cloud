@@ -3,8 +3,6 @@ import '../../App.css';
 import TodoListHeader from "./TodoListHeader/TodoListHeader";
 import TodoListTasks from "./TodoListTasks/TodoListTasks";
 import TodoListFooter from "./TodoListFooter/TodoListFooter";
-
-
 class Enumerator extends React.Component {
 
   componentDidMount() {
