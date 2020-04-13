@@ -7,6 +7,7 @@ import Qualities from "./components/Qualities/Qualities";
 import Form from "./components/Form/Form";
 import NavBar from "./components/NavBar/NavBar";
 import {HashRouter, Route} from "react-router-dom";
+import Enumerator from "./components/Enumerator/Enumerator";
 
 
 const App = () => {
@@ -25,6 +26,7 @@ const App = () => {
           <Route path="/all" render={() => <Qualities nameQualities={nameQualities}/> }/>
           <Route path="/all" component={Message}/>
           <Route path="/form" component={Form}/>
+          <Route path="/enumerator" component={Enumerator}/>
         </div>
       </div>
     </HashRouter>

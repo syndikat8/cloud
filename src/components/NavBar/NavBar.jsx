@@ -3,6 +3,7 @@ import styles from './NavBar.module.css';
 import {NavLink} from "react-router-dom";
 
 
+
 const NavBar = () => {
 
   return (
@@ -11,7 +12,7 @@ const NavBar = () => {
         MENU
         <div className={styles.drop}>
           <div><NavLink to="/form">Monday</NavLink></div>
-          <div><NavLink to="">Tuesday</NavLink></div>
+          <div><NavLink to="/enumerator">Tuesday</NavLink></div>
         </div>
       </NavLink>
 
