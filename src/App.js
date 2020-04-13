@@ -25,7 +25,7 @@ const App = () => {
           <MyName/>
           <Route path="/all" render={() => <Qualities nameQualities={nameQualities}/> }/>
           <Message/>
-          <Route path="/form" component={Form}/>
+          <Route path="/form" render={() => <Form /> }/>
           <Route path="/enumerator" render={() => <Enumerator /> }/>
         </div>
       </div>
