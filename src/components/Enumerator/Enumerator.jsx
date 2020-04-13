@@ -3,6 +3,7 @@ import '../../App.css';
 import TodoListHeader from "./TodoListHeader/TodoListHeader";
 import TodoListTasks from "./TodoListTasks/TodoListTasks";
 import TodoListFooter from "./TodoListFooter/TodoListFooter";
+
 class Enumerator extends React.Component {
 
   componentDidMount() {
@@ -13,12 +14,12 @@ class Enumerator extends React.Component {
 
   state = {
     tasks: [
-      // {id: 0, title: "JS", isDone: true, priority: "low"},
-      // {id: 1, title: "CSS", isDone: true, priority: "low"},
-      // {id: 2, title: "HTML", isDone: true, priority: "low"},
-      // {id: 3, title: "React", isDone: false, priority: "low"},
-      // {id: 4, title: "Sass", isDone: false, priority: "low"},
-      // {id: 5, title: "Redux", isDone: false, priority: "low"}
+      {id: 0, title: "JS", isDone: true, priority: "low"},
+      {id: 1, title: "CSS", isDone: true, priority: "low"},
+      {id: 2, title: "HTML", isDone: true, priority: "low"},
+      {id: 3, title: "React", isDone: false, priority: "low"},
+      {id: 4, title: "Sass", isDone: false, priority: "low"},
+      {id: 5, title: "Redux", isDone: false, priority: "low"}
     ],
     filterValue: "All"
   };
@@ -28,15 +29,15 @@ class Enumerator extends React.Component {
   }
 
   restoreState = () => {
-    let  state = this.state
+    let state = this.state
     let stateAsString = localStorage.getItem("our-state")
-    if(stateAsString) {
+    if (stateAsString) {
       state = JSON.parse(stateAsString);
     }
     this.setState(state, () => {
       this.state.tasks.forEach(task => {
-        if( task.id >= this.nextTaskId) {
-          this.nextTaskId = task.id +1;
+        if (task.id >= this.nextTaskId) {
+          this.nextTaskId = task.id + 1;
         }
       })
     })
@@ -53,7 +54,9 @@ class Enumerator extends React.Component {
     let newTasks = [...this.state.tasks, newTask];
     this.setState({
       tasks: newTasks
-    }, () => {this.saveState()})
+    }, () => {
+      this.saveState()
+    })
   };
 
   changeFilter = (newFilterValue) => {
@@ -87,6 +90,20 @@ class Enumerator extends React.Component {
     this.changeTask(taskId, {title: newTitle})
   };
 
+  deliteTask = (taskId) => {
+    this.setState(({tasks}) => {
+      const idx = tasks.findIndex((el) => el.id === taskId)
+      const newTasks = [
+        ...tasks.slice(0, idx),
+        ...tasks.slice(idx + 1),
+      ]
+      return {
+        tasks: newTasks
+      }
+    }, () => {
+      this.saveState()
+    })
+  }
 
   render = () => {
 
@@ -95,6 +112,7 @@ class Enumerator extends React.Component {
         <div className="todoList">
           <TodoListHeader addTask={this.addTask}/>
           <TodoListTasks
+            deliteTask={this.deliteTask}
             changeTitle={this.changeTitle}
             changeStatus={this.changeStatus}
             tasks={this.state.tasks.filter(t => {
