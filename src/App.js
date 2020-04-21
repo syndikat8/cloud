@@ -12,16 +12,22 @@ import Enumerator from "./components/Enumerator/Enumerator";
 
 class App extends React.Component {
 
+  componentDidMount() {
+    setTimeout(() => { this.setState({loading: "11111" }) }, 3000)
+  }
+
+
+
   state = {
     nameQualities: [
       {qualitie: "Punctual", id: "1"},
       {qualitie: "Sportsman", id: "2"},
       {qualitie: "Сonfident", id: "3"}
-    ]
+    ],
+    loading: "KKKKKKKKKKKKKKKKk",
   }
 
   render() {
-
 
     return (
 
@@ -34,6 +40,7 @@ class App extends React.Component {
             <Message/>
             <Route path="/form" render={() => <Form/>}/>
             <Route path="/enumerator" render={() => <Enumerator/>}/>
+            {this.state.loading}
           </div>
         </div>
       </HashRouter>
