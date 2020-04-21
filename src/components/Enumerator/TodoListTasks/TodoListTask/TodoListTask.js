@@ -5,13 +5,16 @@ class TodoListTask extends React.Component {
 
   state = {
     editeMode: false,
+    priorityLow: "Low",
+    priorityMiddle: "Middle",
+    priorityHeight: "Height",
   }
+
+
 
   onPriorityModeL = () => {
-    this.props.changePriority(this.props.task.id, "middle")
-
-  }
-
+     this.props.changePriority(this.props.task.id, "middle")
+  };
   onPriorityModeM = () => {
     this.props.changePriority(this.props.task.id, "Height")
 
@@ -48,6 +51,8 @@ class TodoListTask extends React.Component {
       changePriority = <span onClick={this.onPriorityModeH}> priority: {this.props.task.priority}</span>
     }
 
+
+
     let taskIsDoneClass = this.props.task.isDone ? "todoList-task done" : "todoList-task";
     return (
       <div className={taskIsDoneClass}>
@@ -65,8 +70,17 @@ class TodoListTask extends React.Component {
           : <span onClick={this.activateEditMode}> {this.props.task.title}</span>}
 
         {changePriority}
-
         <button className="delit" onClick={this.onDeliteTask}>Delete</button>
+
+
+
+          <select  name="Priority" >
+            <option >{this.state.priorityLow}</option>
+            <option>{this.state.priorityMiddle}</option>
+            <option>{this.state.priorityHeight}</option>
+          </select>
+
+
       </div>
     );
   }

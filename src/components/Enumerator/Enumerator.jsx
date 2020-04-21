@@ -15,7 +15,7 @@ class Enumerator extends React.Component {
 
   state = {
     tasks: [],
-    filterValue: "All"
+    filterValue: "All",
   };
 
   saveState = () => {
