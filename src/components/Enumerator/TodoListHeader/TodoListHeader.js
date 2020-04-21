@@ -17,8 +17,8 @@ class TodoListHeader extends React.Component {
       this.setState({error: true})
     } else {
       this.setState({error: false})
+      this.props.addTask(newTitle)
     }
-    this.props.addTask(newTitle)
   };
 
   onTitleChanged = (e) => {
