@@ -14,21 +14,13 @@ class Enumerator extends React.Component {
   nextTaskId = 0;
 
   state = {
-    tasks: [
-      {id: 0, title: "JS", isDone: true, priority: "low"},
-      {id: 1, title: "CSS", isDone: true, priority: "low"},
-      {id: 2, title: "HTML", isDone: true, priority: "low"},
-      {id: 3, title: "React", isDone: false, priority: "low"},
-      {id: 4, title: "Sass", isDone: false, priority: "low"},
-      {id: 5, title: "Redux", isDone: false, priority: "low"}
-    ],
+    tasks: [],
     filterValue: "All"
   };
 
   saveState = () => {
     save(this.state)
   }
-
   restoreState = () => {
     let state = this.state
     let stateAsString = restore()
@@ -43,7 +35,6 @@ class Enumerator extends React.Component {
       })
     })
   }
-
   addTask = (newTitle) => {
     let newTask = {
       id: this.nextTaskId,
@@ -59,7 +50,6 @@ class Enumerator extends React.Component {
       this.saveState()
     })
   };
-
   changeFilter = (newFilterValue) => {
     this.setState({
       filterValue: newFilterValue
@@ -91,6 +81,10 @@ class Enumerator extends React.Component {
     this.changeTask(taskId, {title: newTitle})
   };
 
+  changePriority =(taskId, newPriority) => {
+    this.changeTask(taskId, {priority: newPriority})
+  };
+
   deliteTask = (taskId) => {
     this.setState(({tasks}) => {
       const idx = tasks.findIndex((el) => el.id === taskId)
@@ -113,6 +107,7 @@ class Enumerator extends React.Component {
         <div className="todoList">
           <TodoListHeader addTask={this.addTask}/>
           <TodoListTasks
+            changePriority={this.changePriority}
             deliteTask={this.deliteTask}
             changeTitle={this.changeTitle}
             changeStatus={this.changeStatus}

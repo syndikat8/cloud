@@ -8,7 +8,7 @@ import InputIN from "./InputIN/InputIN";
 class Form extends React.Component {
 
   state = {
-    spanNumber: 10,
+    spanNumber: 0,
     countValueInput: [],
     colorInput: "paint",
     title: ""
