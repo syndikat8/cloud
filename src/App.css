@@ -1,8 +1,10 @@
 body {
-    background-color: whitesmoke;
+    background-color: #223212;
+
 }
 .App {
 
+    border: none;
 }
 
 .todoList {

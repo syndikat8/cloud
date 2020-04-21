@@ -30,7 +30,7 @@ class App extends React.Component {
 
   render() {
 
-    let choiceRenderComponent  = this.state.loading? <Loader/>: <div className="App">;
+    let choiceRenderComponent  = this.state.loading? <Loader/>: <div className="App">
       <div className={styles.container}>
 
         <NavBar/>
