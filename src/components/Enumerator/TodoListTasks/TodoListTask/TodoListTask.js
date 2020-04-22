@@ -1,13 +1,11 @@
 import React from 'react';
+import Select from "./Select/Select";
 
 
 class TodoListTask extends React.Component {
 
   state = {
     editeMode: false,
-    priorityLow: "Low",
-    priorityMiddle: "Middle",
-    priorityHeight: "Height",
   }
 
 
@@ -68,19 +66,9 @@ class TodoListTask extends React.Component {
             onBlur={this.deActivateEditMode}
             onChange={this.onTitleChanged}/>
           : <span onClick={this.activateEditMode}> {this.props.task.title}</span>}
-
         {changePriority}
         <button className="delit" onClick={this.onDeliteTask}>Delete</button>
-
-
-
-          <select  name="Priority" >
-            <option >{this.state.priorityLow}</option>
-            <option>{this.state.priorityMiddle}</option>
-            <option>{this.state.priorityHeight}</option>
-          </select>
-
-
+        <Select/>
       </div>
     );
   }
