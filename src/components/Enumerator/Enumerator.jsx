@@ -40,7 +40,7 @@ class Enumerator extends React.Component {
       id: this.nextTaskId,
       title: newTitle,
       isDone: true,
-      priority: "low"
+      priority: "Low"
     };
     this.nextTaskId++;
     let newTasks = [...this.state.tasks, newTask];

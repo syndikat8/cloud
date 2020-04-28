@@ -1,26 +1,29 @@
 import React from 'react';
 import Select from "./Select/Select";
+import styles from "../../../NavBar/NavBar.module.css";
+import {NavLink} from "react-router-dom";
 
 
 class TodoListTask extends React.Component {
 
   state = {
     editeMode: false,
+    created: " 28.04.2020",
+    updated: " 29.04.2020",
+    finished: " 30.04.2020"
   }
 
 
-
   onPriorityModeL = () => {
-     this.props.changePriority(this.props.task.id, "middle")
+    this.props.changePriority(this.props.task.id, "Middle")
   };
   onPriorityModeM = () => {
     this.props.changePriority(this.props.task.id, "Height")
 
   }
   onPriorityModeH = () => {
-    this.props.changePriority(this.props.task.id, "low")
+    this.props.changePriority(this.props.task.id, "Low")
   }
-
 
   activateEditMode = () => {
     this.setState({editeMode: true})
@@ -41,15 +44,13 @@ class TodoListTask extends React.Component {
   render = () => {
 
     let changePriority
-    if (this.props.task.priority === "low") {
+    if (this.props.task.priority === "Low") {
       changePriority = <span onClick={this.onPriorityModeL}> priority: {this.props.task.priority}</span>
-    } else if (this.props.task.priority === "middle") {
+    } else if (this.props.task.priority === "Middle") {
       changePriority = <span onClick={this.onPriorityModeM}> priority: {this.props.task.priority}</span>
     } else {
       changePriority = <span onClick={this.onPriorityModeH}> priority: {this.props.task.priority}</span>
     }
-
-
 
     let taskIsDoneClass = this.props.task.isDone ? "todoList-task done" : "todoList-task";
     return (
@@ -65,7 +66,23 @@ class TodoListTask extends React.Component {
             autoFocus={true}
             onBlur={this.deActivateEditMode}
             onChange={this.onTitleChanged}/>
-          : <span onClick={this.activateEditMode}> {this.props.task.title}</span>}
+          : <span
+            className="backlight"
+            onClick={this.activateEditMode}>
+            {this.props.task.title}
+            <span className="drop">
+              <div>
+              Created:{this.state.created}
+               </div>
+              <div>
+                Updated:{this.state.updated}
+              </div>
+              <div>
+              Finished:{this.state.finished}
+            </div>
+            </span>
+        </span>}
+
         {changePriority}
         <button className="delit" onClick={this.onDeliteTask}>Delete</button>
         <Select/>

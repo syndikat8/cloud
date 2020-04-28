@@ -25,7 +25,7 @@ class App extends React.Component {
       {qualitie: "Sportsman", id: "2"},
       {qualitie: "Сonfident", id: "3"}
     ],
-    loading: true,
+    loading: false,
   }
 
   render() {
