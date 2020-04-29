@@ -9,13 +9,20 @@ class Enumerator extends React.Component {
 
   componentDidMount() {
     this.restoreState()
+      setInterval(() => {
+        this.setState({
+          nowTime: new Date().toLocaleTimeString()
+        })
+      }, 1000)
   }
 
   nextTaskId = 0;
 
   state = {
-    tasks: [],
+    tasks: [{ created: " "}],
     filterValue: "All",
+    nowTime: new Date().toLocaleTimeString(),
+
   };
 
   saveState = () => {
@@ -40,7 +47,8 @@ class Enumerator extends React.Component {
       id: this.nextTaskId,
       title: newTitle,
       isDone: true,
-      priority: "Low"
+      priority: "Low",
+      created: this.state.nowTime
     };
     this.nextTaskId++;
     let newTasks = [...this.state.tasks, newTask];
@@ -79,6 +87,7 @@ class Enumerator extends React.Component {
 
   changeTitle = (taskId, newTitle) => {
     this.changeTask(taskId, {title: newTitle})
+
   };
 
   changePriority =(taskId, newPriority) => {
@@ -107,6 +116,7 @@ class Enumerator extends React.Component {
         <div className="todoList">
           <TodoListHeader addTask={this.addTask}/>
           <TodoListTasks
+            nowTime={this.state.nowTime}
             changePriority={this.changePriority}
             deliteTask={this.deliteTask}
             changeTitle={this.changeTitle}

@@ -1,38 +1,49 @@
 import React from 'react';
 import Select from "./Select/Select";
-import styles from "../../../NavBar/NavBar.module.css";
-import {NavLink} from "react-router-dom";
+
 
 
 class TodoListTask extends React.Component {
 
+
   state = {
     editeMode: false,
-    created: " 28.04.2020",
-    updated: " 29.04.2020",
-    finished: " 30.04.2020"
+    updated: "",
+    finished: ""
   }
 
 
   onPriorityModeL = () => {
     this.props.changePriority(this.props.task.id, "Middle")
+    this.setState({
+      updated: this.props.nowTime
+    })
   };
   onPriorityModeM = () => {
     this.props.changePriority(this.props.task.id, "Height")
+    this.setState({
+      updated: this.props.nowTime
+    })
 
   }
   onPriorityModeH = () => {
     this.props.changePriority(this.props.task.id, "Low")
+    this.setState({
+      updated: this.props.nowTime
+    })
   }
 
   activateEditMode = () => {
-    this.setState({editeMode: true})
+    this.setState({editeMode: true, updated: this.props.nowTime})
   }
   deActivateEditMode = () => {
     this.setState({editeMode: false})
   }
   onIsDoneChanged = (e) => {
     this.props.changeStatus(this.props.task.id, e.currentTarget.checked);
+   if (this.props.task.isDone === false) {
+    this.setState({finished: this.props.nowTime})
+   }
   };
   onTitleChanged = (e) => {
     this.props.changeTitle(this.props.task.id, e.currentTarget.value);
@@ -45,7 +56,8 @@ class TodoListTask extends React.Component {
 
     let changePriority
     if (this.props.task.priority === "Low") {
-      changePriority = <span onClick={this.onPriorityModeL}> priority: {this.props.task.priority}</span>
+
+      changePriority = <span onClick={this.onPriorityModeL} > priority: {this.props.task.priority}</span>
     } else if (this.props.task.priority === "Middle") {
       changePriority = <span onClick={this.onPriorityModeM}> priority: {this.props.task.priority}</span>
     } else {
@@ -68,17 +80,17 @@ class TodoListTask extends React.Component {
             onChange={this.onTitleChanged}/>
           : <span
             className="backlight"
-            onClick={this.activateEditMode}>
+            onDoubleClick={this.activateEditMode}>
             {this.props.task.title}
             <span className="drop">
               <div>
-              Created:{this.state.created}
+               Created: {this.props.task.created}
                </div>
               <div>
-                Updated:{this.state.updated}
+                Updated: {this.state.updated}
               </div>
               <div>
-              Finished:{this.state.finished}
+               Finished: {this.state.finished}
             </div>
             </span>
         </span>}
@@ -86,6 +98,7 @@ class TodoListTask extends React.Component {
         {changePriority}
         <button className="delit" onClick={this.onDeliteTask}>Delete</button>
         <Select/>
+        {this.props.nowTime}
       </div>
     );
   }
