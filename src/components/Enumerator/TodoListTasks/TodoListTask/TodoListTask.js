@@ -12,25 +12,23 @@ class TodoListTask extends React.Component {
     finished: ""
   }
 
+  updated = () => {
+  return  this.setState({
+      updated: this.props.nowTime
+    })
+  }
 
   onPriorityModeL = () => {
     this.props.changePriority(this.props.task.id, "Middle")
-    this.setState({
-      updated: this.props.nowTime
-    })
+    this.updated()
   };
   onPriorityModeM = () => {
     this.props.changePriority(this.props.task.id, "Height")
-    this.setState({
-      updated: this.props.nowTime
-    })
-
+    this.updated()
   }
   onPriorityModeH = () => {
     this.props.changePriority(this.props.task.id, "Low")
-    this.setState({
-      updated: this.props.nowTime
-    })
+    this.updated()
   }
 
   activateEditMode = () => {
@@ -53,6 +51,8 @@ class TodoListTask extends React.Component {
   }
 
   render = () => {
+
+
 
     let changePriority
     if (this.props.task.priority === "Low") {
@@ -95,7 +95,7 @@ class TodoListTask extends React.Component {
         </span>}
         {changePriority}
         <button className="delit" onClick={this.onDeliteTask}>Delete</button>
-        <Select/>
+        <Select updated={this.updated} />
       </div>
     );
   }

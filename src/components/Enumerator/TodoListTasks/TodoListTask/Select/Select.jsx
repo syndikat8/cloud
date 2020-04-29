@@ -13,10 +13,12 @@ class Select extends React.Component {
 
   handlerChange = (e) => {
     this.setState({value: e.target.value})
+    this.props.updated()
   }
 
   render = () => {
-    let options = this.state.options.map(o => <option key={o.id} value={o.option}>{o.option}</option>)
+
+    let options = this.state.options.map(o => <option key={o.id} value={o.option}> {o.option}</option>)
     return (
       <select
         value={this.state.value}
