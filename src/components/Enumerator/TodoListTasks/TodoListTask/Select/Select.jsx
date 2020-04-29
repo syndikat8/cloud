@@ -3,7 +3,7 @@ import React from 'react';
 class Select extends React.Component {
 
   state = {
-    options:[
+    options: [
       {option: "Low", id: 1},
       {option: "Middle", id: 2},
       {option: "Height", id: 3},
@@ -16,9 +16,11 @@ class Select extends React.Component {
   }
 
   render = () => {
-  let options = this.state.options.map( o =><option key={o.id} value={o.option}>{o.option}</option> )
+    let options = this.state.options.map(o => <option key={o.id} value={o.option}>{o.option}</option>)
     return (
-      <select value={this.state.value} onChange={this.handlerChange}>
+      <select
+        value={this.state.value}
+        onChange={this.handlerChange}>
         {options}
       </select>
     );

@@ -56,7 +56,6 @@ class TodoListTask extends React.Component {
 
     let changePriority
     if (this.props.task.priority === "Low") {
-
       changePriority = <span onClick={this.onPriorityModeL} > priority: {this.props.task.priority}</span>
     } else if (this.props.task.priority === "Middle") {
       changePriority = <span onClick={this.onPriorityModeM}> priority: {this.props.task.priority}</span>
@@ -94,11 +93,9 @@ class TodoListTask extends React.Component {
             </div>
             </span>
         </span>}
-
         {changePriority}
         <button className="delit" onClick={this.onDeliteTask}>Delete</button>
         <Select/>
-        {this.props.nowTime}
       </div>
     );
   }
