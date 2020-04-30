@@ -94,9 +94,13 @@ class Enumerator extends React.Component {
 
   };
 
-  changePriority =(taskId, newPriority) => {
+  changePriority = (taskId, newPriority) => {
     this.changeTask(taskId, {priority: newPriority},{updated: this.state.nowTime})
   };
+  changeSelect = (taskId, newPriority) => {
+    this.changeTask(taskId, {priority: newPriority},{updated: this.state.nowTime})
+  };
+
 
   deliteTask = (taskId) => {
     this.setState(({tasks}) => {
@@ -122,6 +126,7 @@ class Enumerator extends React.Component {
           <TodoListHeader addTask={this.addTask}/>
           <TodoListTasks
             nowTime={this.state.nowTime}
+            changeSelect={this.changeSelect}
             changePriority={this.changePriority}
             deliteTask={this.deliteTask}
             changeTitle={this.changeTitle}

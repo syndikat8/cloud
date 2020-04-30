@@ -85,7 +85,9 @@ class TodoListTask extends React.Component {
         </span>}
         {changePriority}
         <button className="delit" onClick={this.onDeliteTask}>Delete</button>
-        <Select/>
+        <Select
+          id={this.props.task.id}
+          changeSelect={this.props.changeSelect}/>
       </div>
     );
   }

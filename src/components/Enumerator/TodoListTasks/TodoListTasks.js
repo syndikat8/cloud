@@ -13,6 +13,7 @@ class TodoListTasks extends React.Component {
         deliteTask={this.props.deliteTask}
         changeTitle={this.props.changeTitle}
         changeStatus={this.props.changeStatus}
+        changeSelect={this.props.changeSelect}
         task={task}
       />
     });
