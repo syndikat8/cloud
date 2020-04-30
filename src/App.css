@@ -65,7 +65,8 @@ body {
     display: none;
     position: absolute;
     background-color:#223212 ;
-    min-width: 200px;
+    min-width: 280px;
+
     border-radius: 5px;
     text-align: center;
     z-index: 100;

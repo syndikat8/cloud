@@ -8,27 +8,20 @@ class TodoListTask extends React.Component {
 
   state = {
     editeMode: false,
-    updated: "",
-    finished: ""
   }
 
-  updated = () => {
-  return  this.setState({
-      updated: this.props.nowTime
-    })
-  }
 
   onPriorityModeL = () => {
     this.props.changePriority(this.props.task.id, "Middle")
-    this.updated()
+
   };
   onPriorityModeM = () => {
     this.props.changePriority(this.props.task.id, "Height")
-    this.updated()
+
   }
   onPriorityModeH = () => {
     this.props.changePriority(this.props.task.id, "Low")
-    this.updated()
+
   }
 
   activateEditMode = () => {
@@ -39,9 +32,6 @@ class TodoListTask extends React.Component {
   }
   onIsDoneChanged = (e) => {
     this.props.changeStatus(this.props.task.id, e.currentTarget.checked);
-   if (this.props.task.isDone === false) {
-    this.setState({finished: this.props.nowTime})
-   }
   };
   onTitleChanged = (e) => {
     this.props.changeTitle(this.props.task.id, e.currentTarget.value);
@@ -86,16 +76,16 @@ class TodoListTask extends React.Component {
                Created: {this.props.task.created}
                </div>
               <div>
-                Updated: {this.state.updated}
+                Updated: {this.props.task.updated}
               </div>
               <div>
-               Finished: {this.state.finished}
+               Finished: {this.props.task.finished}
             </div>
             </span>
         </span>}
         {changePriority}
         <button className="delit" onClick={this.onDeliteTask}>Delete</button>
-        <Select updated={this.updated} />
+        <Select/>
       </div>
     );
   }

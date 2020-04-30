@@ -19,10 +19,11 @@ class Enumerator extends React.Component {
   nextTaskId = 0;
 
   state = {
-    tasks: [{ created: " "}],
+    tasks: [
+      {created:"", updated:"", finished:"",}
+    ],
     filterValue: "All",
     nowTime: new Date().toLocaleTimeString(),
-
   };
 
   saveState = () => {
@@ -46,9 +47,11 @@ class Enumerator extends React.Component {
     let newTask = {
       id: this.nextTaskId,
       title: newTitle,
-      isDone: true,
+      isDone: false,
       priority: "Low",
-      created: this.state.nowTime
+      created: this.state.nowTime,
+      updated: "",
+      finished: "",
     };
     this.nextTaskId++;
     let newTasks = [...this.state.tasks, newTask];
@@ -66,12 +69,12 @@ class Enumerator extends React.Component {
     })
   };
 
-  changeTask = (taskId, obj) => {
+  changeTask = (taskId, obj,update) => {
     let newTasks = this.state.tasks.map(t => {
       if (t.id !== taskId) {
         return t;
       } else {
-        return {...t, ...obj}
+        return {...t, ...obj, ...update}
       }
     });
     this.setState({
@@ -82,16 +85,17 @@ class Enumerator extends React.Component {
   };
 
   changeStatus = (taskId, isDone) => {
-    this.changeTask(taskId, {isDone: isDone})
+    let byClickOnCheked = isDone? this.state.nowTime: "Чего отжал? Не сделал?!"
+    this.changeTask(taskId, {isDone: isDone},{finished: byClickOnCheked})
   };
 
   changeTitle = (taskId, newTitle) => {
-    this.changeTask(taskId, {title: newTitle})
+    this.changeTask(taskId, {title: newTitle},{updated: this.state.nowTime})
 
   };
 
   changePriority =(taskId, newPriority) => {
-    this.changeTask(taskId, {priority: newPriority})
+    this.changeTask(taskId, {priority: newPriority},{updated: this.state.nowTime})
   };
 
   deliteTask = (taskId) => {
@@ -108,6 +112,7 @@ class Enumerator extends React.Component {
       this.saveState()
     })
   }
+
 
   render = () => {
 
