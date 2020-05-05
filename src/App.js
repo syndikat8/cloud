@@ -9,12 +9,14 @@ import NavBar from "./components/NavBar/NavBar";
 import {HashRouter, Route} from "react-router-dom";
 import Enumerator from "./components/Enumerator/Enumerator";
 import Loader from "./components/Loader/Loader";
+import {connect} from "react-redux";
+import {setLoading} from "./redux/loading-reducer";
 
 
 class App extends React.Component {
 
   componentDidMount() {
-    setTimeout(() => { this.setState({loading: false }) }, 3000)
+    setTimeout(() => {this.props.setLoading(false) }, 3000)
   }
 
 
@@ -25,12 +27,11 @@ class App extends React.Component {
       {qualitie: "Sportsman", id: "2"},
       {qualitie: "Сonfident", id: "3"}
     ],
-    loading: false,
   }
 
   render() {
 
-    let choiceRenderComponent  = this.state.loading? <Loader/>: <div className="App">
+    let choiceRenderComponent  = this.props.loading? <Loader/>: <div className="App">
       <div className={styles.container}>
 
         <NavBar/>
@@ -50,4 +51,12 @@ class App extends React.Component {
   };
 }
 
-export default App;
+
+let mapStateToProps = (state) => {
+  return {
+    loading: state.loadingPage.loading
+  }
+}
+
+
+export default connect(mapStateToProps, {setLoading})(App)
