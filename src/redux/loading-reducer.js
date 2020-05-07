@@ -2,10 +2,10 @@ const SET_LOADING = "SET_LOADING"
 
 
 let initialState = {
-  loading: true
+  loading: false
 }
 
-const loadingReducer = (state = initialState, action) => {
+const settingsReducer = (state = initialState, action) => {
  switch (action.type) {
    case SET_LOADING:
      return {
@@ -20,4 +20,4 @@ const loadingReducer = (state = initialState, action) => {
 export const setLoading = (loading) => ({type:SET_LOADING, loading})
 
 
-export default loadingReducer;
+export default settingsReducer;

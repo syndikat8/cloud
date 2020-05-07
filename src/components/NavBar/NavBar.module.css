@@ -2,6 +2,7 @@
     height: 50px;
     display: flex;
     justify-content: flex-end;
+    margin-right: 50px;
 }
 .navBar a {
     text-decoration: none;

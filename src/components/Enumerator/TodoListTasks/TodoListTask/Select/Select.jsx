@@ -13,7 +13,7 @@ class Select extends React.Component {
 
   handlerChange = (e) => {
     this.setState({value: e.target.value})
-    this.props.changeSelect(this.props.id,e.target.value)
+    this.props.changeSelect(this.props.id,e.currentTarget.value)
   }
 
   render = () => {

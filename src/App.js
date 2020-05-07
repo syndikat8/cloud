@@ -2,7 +2,6 @@ import React from 'react';
 import './App.css';
 import Message from "./components/Message/Message";
 import MyName from "./components/MyName/MyName";
-import styles from "./Container.module.css";
 import Qualities from "./components/Qualities/Qualities";
 import Form from "./components/Form/Form";
 import NavBar from "./components/NavBar/NavBar";
@@ -11,14 +10,17 @@ import Enumerator from "./components/Enumerator/Enumerator";
 import Loader from "./components/Loader/Loader";
 import {connect} from "react-redux";
 import {setLoading} from "./redux/loading-reducer";
+import Environment from "./components/Environment/Environment";
+import {styleBlack, styleClassic} from "./redux/settings-reducer";
 
 
 class App extends React.Component {
 
   componentDidMount() {
-    setTimeout(() => {this.props.setLoading(false) }, 3000)
+    setTimeout(() => {
+      this.props.setLoading(false)
+    }, 3000)
   }
-
 
 
   state = {
@@ -27,17 +29,29 @@ class App extends React.Component {
       {qualitie: "Sportsman", id: "2"},
       {qualitie: "Сonfident", id: "3"}
     ],
+
   }
+
+
+  onCLickThemeClssic = () => {
+    this.props.styleClassic()
+  }
+  onCLickThemeBlack = () => {
+    this.props.styleBlack()
+  }
+
 
   render() {
 
-    let choiceRenderComponent  = this.props.loading? <Loader/>: <div className="App">
-      <div className={styles.container}>
-
+    let choiceRenderComponent = this.props.loading ? <Loader/> : <div className="App">
+      <div className={this.props.style}>
         <NavBar/>
         <MyName/>
-        <Route path="/all" render={() => <Qualities nameQualities={this.state.nameQualities}/>}/>
+        <Qualities nameQualities={this.state.nameQualities}/>
         <Message/>
+        <Route path="/environment" render={() => <Environment
+          onCLickThemeClssic={this.onCLickThemeClssic}
+          onCLickThemeBlack={this.onCLickThemeBlack}/>}/>
         <Route path="/form" render={() => <Form/>}/>
         <Route path="/enumerator" render={() => <Enumerator/>}/>
       </div>
@@ -45,7 +59,7 @@ class App extends React.Component {
 
     return (
       <HashRouter>
-          {choiceRenderComponent}
+        {choiceRenderComponent}
       </HashRouter>
     );
   };
@@ -54,9 +68,10 @@ class App extends React.Component {
 
 let mapStateToProps = (state) => {
   return {
-    loading: state.loadingPage.loading
+    loading: state.loadingPage.loading,
+    style: state.settingPage.style
   }
 }
 
 
-export default connect(mapStateToProps, {setLoading})(App)
+export default connect(mapStateToProps, {setLoading,styleClassic,styleBlack})(App)

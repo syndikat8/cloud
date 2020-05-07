@@ -9,8 +9,9 @@ const NavBar = () => {
   return (
     <nav className={styles.navBar}>
       <NavLink className={styles.menuList} to="/all">
-        MENU
+        <span>MENU</span>
         <div className={styles.drop}>
+          <div><NavLink to="/environment">Environment</NavLink></div>
           <div><NavLink to="/form">Monday</NavLink></div>
           <div><NavLink to="/enumerator">Tuesday</NavLink></div>
         </div>

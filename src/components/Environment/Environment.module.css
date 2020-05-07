@@ -1,0 +1,18 @@
+.environment input {
+    transform:scale(2.3);
+    margin: 10px;
+}
+
+.environment{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.environment h3{
+    font-size: 25px;
+}
+
+.environmentItem {
+    font-size: 18px;
+}
