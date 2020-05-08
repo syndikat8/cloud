@@ -1,5 +1,5 @@
-const STYLE_CLASSIC = "STYLE_CLASSIC"
-const STYLE_BlACK = "STYLE_BlACK"
+const STYLE = "STYLE"
+
 
 let initialState = {
   style: "containerClassic"
@@ -7,23 +7,20 @@ let initialState = {
 
 const settingsReducer = (state = initialState, action) => {
   switch (action.type) {
-    case STYLE_CLASSIC:
+    case STYLE:
       return {
-        ...state, style: "containerClassic"
+        ...state, style: action.newStyle
       }
-    case STYLE_BlACK:
-      return {
-        ...state, style: "containerBlack"
-      }
-
     default:
       return state
   }
 }
 
 
-export const styleClassic = () => ({type: STYLE_CLASSIC})
-export const styleBlack = () => ({type: STYLE_BlACK})
+export const styles = (newStyle) => ({type: STYLE, newStyle})
+
 
 
 export default settingsReducer;
+
+

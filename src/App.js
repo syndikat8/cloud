@@ -11,7 +11,7 @@ import Loader from "./components/Loader/Loader";
 import {connect} from "react-redux";
 import {setLoading} from "./redux/loading-reducer";
 import Environment from "./components/Environment/Environment";
-import {styleBlack, styleClassic} from "./redux/settings-reducer";
+import {styles} from "./redux/settings-reducer";
 
 
 class App extends React.Component {
@@ -34,10 +34,10 @@ class App extends React.Component {
 
 
   onCLickThemeClssic = () => {
-    this.props.styleClassic()
+    this.props.styles("containerClassic")
   }
   onCLickThemeBlack = () => {
-    this.props.styleBlack()
+    this.props.styles("containerBlack")
   }
 
 
@@ -74,4 +74,4 @@ let mapStateToProps = (state) => {
 }
 
 
-export default connect(mapStateToProps, {setLoading,styleClassic,styleBlack})(App)
+export default connect(mapStateToProps, {setLoading,styles})(App)
