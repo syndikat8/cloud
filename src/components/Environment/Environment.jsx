@@ -8,27 +8,28 @@ import {Theme_black, Theme_classic} from "../../styles/styles";
 class Environment extends React.Component {
 
   state = {
-    checkedV: true,
-    checkedF: false,
-    environmentValue: ""
+    checkedOn: true,
+    checkedOff: false,
+    // environmentValue: false
   }
 
-  onChangeStyle = (e) => {
-    this.setState({environmentValue: e.currentTarget.checked})
-  }
+  // onChangeStyle = (e) => {
+  //   alert(e.currentTarget.checked)
+  //   this.setState({environmentValue: e.currentTarget.checked})
+  // }
 
   changeStyleClassic = () => {
     this.props.theme(Theme_classic)
     this.setState({
-      checkedV:true,
-      checkedF:false,
+      checkedOn:true,
+      checkedOff:false,
     })
   }
   changeStyleBlack = () => {
     this.props.theme(Theme_black)
     this.setState({
-      checkedV:false,
-      checkedF: true,
+      checkedOn:false,
+      checkedOff: true,
     })
   }
 
@@ -44,10 +45,10 @@ class Environment extends React.Component {
             <span className={styles.environmentItem}>Classic </span>
             <input
               id="Classic"
-              checked={this.state.checkedV}
+              checked={this.state.checkedOn}
               name="theme"
               onClick={this.changeStyleClassic}
-              onChange={this.onChangeStyle}
+              // onChange={this.onChangeStyle}
               type="radio"/>
           </label>
         </div>
@@ -56,10 +57,10 @@ class Environment extends React.Component {
             <span className={styles.environmentItem}>Black </span>
             <input
               id="Black"
-              checked={this.state.checkedF}
+              checked={this.state.checkedOff}
               name="theme"
               onClick={this.changeStyleBlack}
-              onChange={this.onChangeStyle}
+              // onChange={this.onChangeStyle}
               type="radio"/>
           </label>
         </div>
