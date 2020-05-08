@@ -9,27 +9,27 @@ class Environment extends React.Component {
 
   state = {
     checkedOn: true,
-    checkedOff: false,
-    // environmentValue: false
+    checkedOff: null,
+    checkedValue: true
   }
 
-  // onChangeStyle = (e) => {
-  //   alert(e.currentTarget.checked)
-  //   this.setState({environmentValue: e.currentTarget.checked})
-  // }
+  onChangeStyle = (e) => {
+
+    this.setState({checkedValue: e.currentTarget.checked})
+  }
 
   changeStyleClassic = () => {
     this.props.theme(Theme_classic)
     this.setState({
-      checkedOn:true,
-      checkedOff:false,
+      checkedOn:this.state.checkedValue,
+      checkedOff:!this.state.checkedValue,
     })
   }
   changeStyleBlack = () => {
     this.props.theme(Theme_black)
     this.setState({
-      checkedOn:false,
-      checkedOff: true,
+      checkedOn:!this.state.checkedValue,
+      checkedOff: this.state.checkedValue,
     })
   }
 
@@ -48,7 +48,7 @@ class Environment extends React.Component {
               checked={this.state.checkedOn}
               name="theme"
               onClick={this.changeStyleClassic}
-              // onChange={this.onChangeStyle}
+              onChange={this.onChangeStyle}
               type="radio"/>
           </label>
         </div>
@@ -60,7 +60,7 @@ class Environment extends React.Component {
               checked={this.state.checkedOff}
               name="theme"
               onClick={this.changeStyleBlack}
-              // onChange={this.onChangeStyle}
+              onChange={this.onChangeStyle}
               type="radio"/>
           </label>
         </div>
