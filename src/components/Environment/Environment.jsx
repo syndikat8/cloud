@@ -1,33 +1,37 @@
 import React from "react";
 import styles from "./Environment.module.css"
+import {connect} from "react-redux";
+import {theme} from "../../redux/settings-reducer";
+import {Theme_black, Theme_classic} from "../../styles/styles";
 
 
 class Environment extends React.Component {
 
   state = {
-    environmentValue: "",
-    pressedClassic: true,
-    pressedBlack: "",
+    checkedV: true,
+    checkedF: false,
+    environmentValue: ""
   }
 
   onChangeStyle = (e) => {
-    this.setState({environmentValue: e.target.value})
+    this.setState({environmentValue: e.currentTarget.checked})
   }
 
   changeStyleClassic = () => {
-    this.props.onCLickThemeClssic(this.state.environmentValue)
+    this.props.theme(Theme_classic)
     this.setState({
-      pressedClassic: true,
-      pressedBlack: false,
+      checkedV:true,
+      checkedF:false,
     })
   }
   changeStyleBlack = () => {
-    this.props.onCLickThemeBlack(this.state.environmentValue)
+    this.props.theme(Theme_black)
     this.setState({
-      pressedBlack: true,
-      pressedClassic: false
+      checkedV:false,
+      checkedF: true,
     })
   }
+
 
 
   render() {
@@ -37,37 +41,34 @@ class Environment extends React.Component {
         <h3>Выберите тему:</h3>
         <div>
           <label htmlFor="Classic">
-          <span className={styles.environmentItem}>Classic </span>
-          <input
-            id="Classic"
-            checked={this.state.pressedClassic}
-            name="theme"
-            onClick={this.changeStyleClassic}
-            onChange={this.onChangeStyle}
-            value={this.state.environmentValue}
-            type="radio"/>
+            <span className={styles.environmentItem}>Classic </span>
+            <input
+              id="Classic"
+              checked={this.state.checkedV}
+              name="theme"
+              onClick={this.changeStyleClassic}
+              onChange={this.onChangeStyle}
+              type="radio"/>
           </label>
         </div>
-       <div>
-         <label htmlFor="Black">
-         <span className={styles.environmentItem}>Black </span>
-         <input
-           id="Black"
-           checked={this.state.pressedBlack}
-           name="theme"
-           onClick={this.changeStyleBlack}
-           onChange={this.onChangeStyle}
-           value={this.state.environmentValue}
-           type="radio"/>
-         </label>
-       </div>
-
-
-
+        <div>
+          <label htmlFor="Black">
+            <span className={styles.environmentItem}>Black </span>
+            <input
+              id="Black"
+              checked={this.state.checkedF}
+              name="theme"
+              onClick={this.changeStyleBlack}
+              onChange={this.onChangeStyle}
+              type="radio"/>
+          </label>
+        </div>
       </div>
     )
   }
 
 }
 
-export default Environment;
+
+
+export default connect(null,{theme})(Environment) ;

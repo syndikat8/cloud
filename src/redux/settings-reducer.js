@@ -1,8 +1,10 @@
+import {Theme_classic} from "../styles/styles";
 const STYLE = "STYLE"
 
 
 let initialState = {
-  style: "containerClassic"
+  style: Theme_classic,
+
 }
 
 const settingsReducer = (state = initialState, action) => {
@@ -17,7 +19,7 @@ const settingsReducer = (state = initialState, action) => {
 }
 
 
-export const styles = (newStyle) => ({type: STYLE, newStyle})
+export const theme = (newStyle) => ({type: STYLE, newStyle})
 
 
 

@@ -11,8 +11,7 @@ import Loader from "./components/Loader/Loader";
 import {connect} from "react-redux";
 import {setLoading} from "./redux/loading-reducer";
 import Environment from "./components/Environment/Environment";
-import {styles} from "./redux/settings-reducer";
-
+import styles from "./Container.module.css"
 
 class App extends React.Component {
 
@@ -32,26 +31,14 @@ class App extends React.Component {
 
   }
 
-
-  onCLickThemeClssic = () => {
-    this.props.styles("containerClassic")
-  }
-  onCLickThemeBlack = () => {
-    this.props.styles("containerBlack")
-  }
-
-
   render() {
-
     let choiceRenderComponent = this.props.loading ? <Loader/> : <div className="App">
-      <div className={this.props.style}>
+      <div className={styles[this.props.style]}>
         <NavBar/>
         <MyName/>
         <Qualities nameQualities={this.state.nameQualities}/>
         <Message/>
-        <Route path="/environment" render={() => <Environment
-          onCLickThemeClssic={this.onCLickThemeClssic}
-          onCLickThemeBlack={this.onCLickThemeBlack}/>}/>
+        <Route path="/environment" render={() => <Environment/>}/>
         <Route path="/form" render={() => <Form/>}/>
         <Route path="/enumerator" render={() => <Enumerator/>}/>
       </div>
@@ -65,7 +52,6 @@ class App extends React.Component {
   };
 }
 
-
 let mapStateToProps = (state) => {
   return {
     loading: state.loadingPage.loading,
@@ -73,5 +59,4 @@ let mapStateToProps = (state) => {
   }
 }
 
-
-export default connect(mapStateToProps, {setLoading,styles})(App)
+export default connect(mapStateToProps, {setLoading})(App)
