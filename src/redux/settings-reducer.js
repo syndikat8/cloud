@@ -1,10 +1,11 @@
-import {Theme_classic} from "../styles/styles";
+import {Theme_black, Theme_classic} from "../styles/styles";
 const STYLE = "STYLE"
 
 
 let initialState = {
   style: Theme_classic,
-
+  themeClassic: Theme_classic,
+  themeBlack: Theme_black
 }
 
 const settingsReducer = (state = initialState, action) => {

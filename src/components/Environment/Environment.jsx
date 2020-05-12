@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./Environment.module.css"
 import {connect} from "react-redux";
 import {theme} from "../../redux/settings-reducer";
-import {Theme_black, Theme_classic} from "../../styles/styles";
+
 
 
 class Environment extends React.Component {
@@ -13,25 +13,25 @@ class Environment extends React.Component {
     checkedValue: true
   }
 
-  onChangeStyle = (e) => {
 
+  onChangeStyleClassic = (e) => {
+    this.props.theme(this.props.themeClassic)
     this.setState({checkedValue: e.currentTarget.checked})
-  }
-
-  changeStyleClassic = () => {
-    this.props.theme(Theme_classic)
     this.setState({
       checkedOn:this.state.checkedValue,
       checkedOff:!this.state.checkedValue,
     })
   }
-  changeStyleBlack = () => {
-    this.props.theme(Theme_black)
+
+  onChangeStyleBlack = (e) => {
+    this.props.theme(this.props.themeBlack)
+    this.setState({checkedValue: e.currentTarget.checked})
     this.setState({
       checkedOn:!this.state.checkedValue,
       checkedOff: this.state.checkedValue,
     })
   }
+
 
 
 
@@ -47,8 +47,7 @@ class Environment extends React.Component {
               id="Classic"
               checked={this.state.checkedOn}
               name="theme"
-              onClick={this.changeStyleClassic}
-              onChange={this.onChangeStyle}
+              onChange={this.onChangeStyleClassic}
               type="radio"/>
           </label>
         </div>
@@ -59,8 +58,7 @@ class Environment extends React.Component {
               id="Black"
               checked={this.state.checkedOff}
               name="theme"
-              onClick={this.changeStyleBlack}
-              onChange={this.onChangeStyle}
+              onChange={this.onChangeStyleBlack}
               type="radio"/>
           </label>
         </div>
@@ -69,7 +67,12 @@ class Environment extends React.Component {
   }
 
 }
+ let mapStateToProps = (state) => {
+  return {
+    themeClassic: state.settingPage.themeClassic,
+    themeBlack: state.settingPage.themeBlack
+  }
+ }
 
 
-
-export default connect(null,{theme})(Environment) ;
+export default connect(mapStateToProps,{theme})(Environment) ;
