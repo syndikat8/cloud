@@ -13,13 +13,12 @@ class Environment extends React.Component {
     checkedValue: true
   }
 
-
   onChangeStyleClassic = (e) => {
     this.props.theme(this.props.themeClassic)
     this.setState({checkedValue: e.currentTarget.checked})
     this.setState({
-      checkedOn:this.state.checkedValue,
-      checkedOff:!this.state.checkedValue,
+      checkedOn: this.state.checkedValue,
+      checkedOff: !this.state.checkedValue,
     })
   }
 
@@ -27,12 +26,10 @@ class Environment extends React.Component {
     this.props.theme(this.props.themeBlack)
     this.setState({checkedValue: e.currentTarget.checked})
     this.setState({
-      checkedOn:!this.state.checkedValue,
+      checkedOn: !this.state.checkedValue,
       checkedOff: this.state.checkedValue,
     })
   }
-
-
 
 
   render() {
