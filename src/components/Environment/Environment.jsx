@@ -4,31 +4,21 @@ import {connect} from "react-redux";
 import {theme} from "../../redux/settings-reducer";
 
 
-
 class Environment extends React.Component {
 
   state = {
-    checkedOn: true,
-    checkedOff: null,
-    checkedValue: true
+    checkedValue: true,
   }
+
 
   onChangeStyleClassic = (e) => {
     this.props.theme(this.props.themeClassic)
     this.setState({checkedValue: e.currentTarget.checked})
-    this.setState({
-      checkedOn: this.state.checkedValue,
-      checkedOff: !this.state.checkedValue,
-    })
   }
 
   onChangeStyleBlack = (e) => {
     this.props.theme(this.props.themeBlack)
     this.setState({checkedValue: e.currentTarget.checked})
-    this.setState({
-      checkedOn: !this.state.checkedValue,
-      checkedOff: this.state.checkedValue,
-    })
   }
 
 
@@ -42,7 +32,7 @@ class Environment extends React.Component {
             <span className={styles.environmentItem}>Classic </span>
             <input
               id="Classic"
-              checked={this.state.checkedOn}
+              checked={this.props.style === this.props.themeClassic? this.state.checkedValue: !this.state.checkedValue}
               name="theme"
               onChange={this.onChangeStyleClassic}
               type="radio"/>
@@ -53,7 +43,7 @@ class Environment extends React.Component {
             <span className={styles.environmentItem}>Black </span>
             <input
               id="Black"
-              checked={this.state.checkedOff}
+              checked={this.props.style === this.props.themeBlack? this.state.checkedValue: !this.state.checkedValue}
               name="theme"
               onChange={this.onChangeStyleBlack}
               type="radio"/>
@@ -67,7 +57,8 @@ class Environment extends React.Component {
  let mapStateToProps = (state) => {
   return {
     themeClassic: state.settingPage.themeClassic,
-    themeBlack: state.settingPage.themeBlack
+    themeBlack: state.settingPage.themeBlack,
+    style: state.settingPage.style
   }
  }
 
