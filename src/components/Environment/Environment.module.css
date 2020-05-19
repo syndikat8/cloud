@@ -16,3 +16,13 @@
 .environmentItem {
     font-size: 18px;
 }
+
+.environmentElement {
+    display: flex;
+}
+
+.environmentElement button {
+    font-size: 16px;
+    border: 2px solid grey;
+    border-radius: 5px;
+}

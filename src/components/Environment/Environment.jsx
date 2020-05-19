@@ -1,13 +1,13 @@
 import React from "react";
 import styles from "./Environment.module.css"
 import {connect} from "react-redux";
-import {theme} from "../../redux/settings-reducer";
-
+import {changeIsDone, theme} from "../../redux/settings-reducer";
+import axios from "axios";
 
 class Environment extends React.Component {
 
   state = {
-    checkedValue: true,
+    checkedValue: true
   }
 
 
@@ -21,6 +21,19 @@ class Environment extends React.Component {
     this.setState({checkedValue: e.currentTarget.checked})
   }
 
+  onChangeCheked = (e) => {
+    this.props.changeIsDone(e.currentTarget.checked)
+  }
+
+  onButtonClick = () => {
+    axios.post("https://neko-cafe-back.herokuapp.com/auth/test",
+      {success: this.props.isDone}
+      )
+      .then(response => {
+
+          console.log(response.data)
+        })
+  }
 
   render() {
 
@@ -32,7 +45,7 @@ class Environment extends React.Component {
             <span className={styles.environmentItem}>Classic </span>
             <input
               id="Classic"
-              checked={this.props.style === this.props.themeClassic? this.state.checkedValue: !this.state.checkedValue}
+              checked={this.props.style === this.props.themeClassic ? this.state.checkedValue : !this.state.checkedValue}
               name="theme"
               onChange={this.onChangeStyleClassic}
               type="radio"/>
@@ -43,24 +56,30 @@ class Environment extends React.Component {
             <span className={styles.environmentItem}>Black </span>
             <input
               id="Black"
-              checked={this.props.style === this.props.themeBlack? this.state.checkedValue: !this.state.checkedValue}
+              checked={this.props.style === this.props.themeBlack ? this.state.checkedValue : !this.state.checkedValue}
               name="theme"
               onChange={this.onChangeStyleBlack}
               type="radio"/>
           </label>
+        </div>
+        <div className={styles.environmentElement}>
+          <input type="checkbox" checked={this.props.isDone} onChange={this.onChangeCheked}/>
+          <button onClick={this.onButtonClick}>send</button>
         </div>
       </div>
     )
   }
 
 }
- let mapStateToProps = (state) => {
+
+let mapStateToProps = (state) => {
   return {
     themeClassic: state.settingPage.themeClassic,
     themeBlack: state.settingPage.themeBlack,
-    style: state.settingPage.style
+    style: state.settingPage.style,
+    isDone: state.settingPage.isDone,
   }
- }
+}
 
 
-export default connect(mapStateToProps,{theme})(Environment) ;
+export default connect(mapStateToProps, {theme,changeIsDone})(Environment);
