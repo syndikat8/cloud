@@ -25,15 +25,34 @@ class Environment extends React.Component {
     this.props.changeIsDone(e.currentTarget.checked)
   }
 
-  onButtonClick = () => {
-    axios.post("https://neko-cafe-back.herokuapp.com/auth/test",
+  f = () => {
+    return axios.post("https://neko-cafe-back.herokuapp.com/auth/test",
       {success: this.props.isDone}
-      )
-      .then(response => {
-
-          console.log(response.data)
-        })
+    ).then(response =>   {
+      return response.data})
   }
+
+  tryCatch = async (f) => {
+    try {
+      const response = await f();
+      console.log('answer: ', response.data);
+      return response;
+    } catch (e) {
+      console.log('error: ', {...e});
+      return 'error';
+    };
+  }
+
+
+  // onButtonClick = () => {
+  //   axios.post("https://neko-cafe-back.herokuapp.com/auth/test",
+  //     {success: this.props.isDone}
+  //   )
+  //     .then(response => {
+  //
+  //       console.log(response.data)
+  //     })
+  // }
 
   render() {
 
@@ -64,7 +83,7 @@ class Environment extends React.Component {
         </div>
         <div className={styles.environmentElement}>
           <input type="checkbox" checked={this.props.isDone} onChange={this.onChangeCheked}/>
-          <button onClick={this.onButtonClick}>send</button>
+          <button onClick={() => {this.tryCatch(this.f)}}>send</button>
         </div>
       </div>
     )
@@ -82,4 +101,4 @@ let mapStateToProps = (state) => {
 }
 
 
-export default connect(mapStateToProps, {theme,changeIsDone})(Environment);
+export default connect(mapStateToProps, {theme, changeIsDone})(Environment);
