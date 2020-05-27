@@ -1,13 +1,15 @@
 import React from "react";
 import styles from "./Environment.module.css"
 import {connect} from "react-redux";
-import {changeIsDone, theme} from "../../redux/settings-reducer";
-import axios from "axios";
+import {changeCutout, changeIsDone, theme} from "../../redux/settings-reducer";
+import {API, tryCatch} from "../../api/api";
+import Loader from "../Loader/Loader";
 
 class Environment extends React.Component {
 
   state = {
-    checkedValue: true
+    checkedValue: true,
+    cutout: false
   }
 
 
@@ -25,39 +27,25 @@ class Environment extends React.Component {
     this.props.changeIsDone(e.currentTarget.checked)
   }
 
-  f = () => {
-    return axios.post("https://neko-cafe-back.herokuapp.com/auth/test",
-      {success: this.props.isDone}
-    ).then(response =>   {
-      return response.data})
+
+  onButtonClick = () => {
+    this.props.changeCutout(true)
+    tryCatch(() => API.f(this.props.isDone)).then(res => {
+      console.log(res.status)
+      this.props.changeCutout(false)
+    })
+
+    this.props.isDone
+      ? alert("ВСЕ СУПЕР")
+      : alert("Упс, где-то произошла ошибка...")
   }
 
-  tryCatch = async (f) => {
-    try {
-      const response = await f();
-      console.log('answer: ', response.data);
-      return response;
-    } catch (e) {
-      console.log('error: ', {...e});
-      return 'error';
-    };
-  }
-
-
-  // onButtonClick = () => {
-  //   axios.post("https://neko-cafe-back.herokuapp.com/auth/test",
-  //     {success: this.props.isDone}
-  //   )
-  //     .then(response => {
-  //
-  //       console.log(response.data)
-  //     })
-  // }
 
   render() {
 
     return (
       <div className={styles.environment}>
+
         <h3>Выберите тему:</h3>
         <div>
           <label htmlFor="Classic">
@@ -81,9 +69,13 @@ class Environment extends React.Component {
               type="radio"/>
           </label>
         </div>
+        {this.props.cutout ? <span><Loader/></span> : null}
         <div className={styles.environmentElement}>
           <input type="checkbox" checked={this.props.isDone} onChange={this.onChangeCheked}/>
-          <button onClick={() => {this.tryCatch(this.f)}}>send</button>
+          <button
+            disabled={this.props.cutout}
+            onClick={this.onButtonClick}>send
+          </button>
         </div>
       </div>
     )
@@ -97,8 +89,10 @@ let mapStateToProps = (state) => {
     themeBlack: state.settingPage.themeBlack,
     style: state.settingPage.style,
     isDone: state.settingPage.isDone,
+    cutout: state.settingPage.cutout,
+    looding: state.settingPage.looding,
   }
 }
 
 
-export default connect(mapStateToProps, {theme, changeIsDone})(Environment);
+export default connect(mapStateToProps, {theme, changeIsDone, changeCutout})(Environment);

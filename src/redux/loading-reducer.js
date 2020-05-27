@@ -2,7 +2,7 @@ const SET_LOADING = "SET_LOADING"
 
 
 let initialState = {
-  loading: false
+  loading: true
 }
 
 const settingsReducer = (state = initialState, action) => {

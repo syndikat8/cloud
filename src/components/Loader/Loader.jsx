@@ -8,8 +8,8 @@ const Loader = () => {
 
   return  (
     <div className={styles.loader}>
-
     </div>
+
   )
 };
 

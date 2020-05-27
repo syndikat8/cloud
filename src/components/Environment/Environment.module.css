@@ -1,15 +1,15 @@
 .environment input {
-    transform:scale(2.3);
+    transform: scale(2.3);
     margin: 10px;
 }
 
-.environment{
+.environment {
     display: flex;
     align-items: center;
     flex-direction: column;
 }
 
-.environment h3{
+.environment h3 {
     font-size: 25px;
 }
 
@@ -26,3 +26,4 @@
     border: 2px solid grey;
     border-radius: 5px;
 }
+
