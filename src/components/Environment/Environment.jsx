@@ -60,13 +60,13 @@ class Environment extends React.Component {
         {this.state.unError
           ? <span
             className={styles.unError}
-            onClick={this.onUnerrorClick}>Поздравляю, запрос успешен!</span>
+            onPointerEnter={this.onUnerrorClick}>Поздравляю, запрос успешен!</span>
           : null
         }
         {this.state.error
           ? <span
             className={styles.error}
-            onClick={this.onErrorClick}>К сожалению возникла ошибка:(</span>
+            onPointerEnter={this.onErrorClick}>К сожалению возникла ошибка:(</span>
           : null
         }
         <h3>Выберите тему:</h3>
