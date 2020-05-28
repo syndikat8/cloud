@@ -31,6 +31,8 @@ class App extends React.Component {
 
   }
 
+
+
   render() {
     let choiceRenderComponent = this.props.loading ? <Loader/> : <div className="App">
       <div className={styles[this.props.style]}>
