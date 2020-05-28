@@ -20,6 +20,6 @@ export const tryCatch = async (f) => {
     return response;
   } catch (e) {
     console.log('error: ', {...e});
-    return 'Произошла ошибка';
+    return "error";
   }
 }

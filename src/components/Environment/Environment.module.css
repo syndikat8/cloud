@@ -27,3 +27,28 @@
     border-radius: 5px;
 }
 
+.unError{
+    color: #FFFFFF;
+    font-size: 40px;
+    background: linear-gradient(to right, #dce35b, #45b649);
+    padding: 10px 25px;
+    display: inline-block;
+    border-radius: 25px;
+    margin: 20px 0;
+    position: relative;
+    transition: all .4s ease;
+    cursor: pointer;
+}
+
+.error{
+    color: #000000;
+    font-size: 40px;
+    background: linear-gradient(to right, #F08080, #A52A2A);
+    padding: 10px 25px;
+    display: inline-block;
+    border-radius: 25px;
+    margin: 20px 0;
+    position: relative;
+    transition: all .4s ease;
+    cursor: pointer;
+}

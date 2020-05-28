@@ -9,7 +9,8 @@ class Environment extends React.Component {
 
   state = {
     checkedValue: true,
-    cutout: false
+    unError: false,
+    error: false
   }
 
 
@@ -31,21 +32,43 @@ class Environment extends React.Component {
   onButtonClick = () => {
     this.props.changeCutout(true)
     tryCatch(() => API.f(this.props.isDone)).then(res => {
-      console.log(res.status)
+      if (res.status === 200) {
+        this.setState({
+          unError: true
+        })
+      } else {
+        this.setState({error: true})
+      }
       this.props.changeCutout(false)
     })
-
-    this.props.isDone
-      ? alert("ВСЕ СУПЕР")
-      : alert("Упс, где-то произошла ошибка...")
   }
 
 
+  onUnerrorClick = () => {
+    this.setState({unError: false})
+  }
+
+  onErrorClick = () => {
+    this.setState({error: false})
+  }
+
   render() {
+
 
     return (
       <div className={styles.environment}>
-
+        {this.state.unError
+          ? <span
+            className={styles.unError}
+            onClick={this.onUnerrorClick}>Поздравляю, запрос успешен!</span>
+          : null
+        }
+        {this.state.error
+          ? <span
+            className={styles.error}
+            onClick={this.onErrorClick}>К сожалению возникла ошибка:(</span>
+          : null
+        }
         <h3>Выберите тему:</h3>
         <div>
           <label htmlFor="Classic">
@@ -90,7 +113,6 @@ let mapStateToProps = (state) => {
     style: state.settingPage.style,
     isDone: state.settingPage.isDone,
     cutout: state.settingPage.cutout,
-    looding: state.settingPage.looding,
   }
 }
 
