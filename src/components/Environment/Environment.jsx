@@ -1,16 +1,13 @@
 import React from "react";
 import styles from "./Environment.module.css"
 import {connect} from "react-redux";
-import {changeCutout, changeIsDone, theme} from "../../redux/settings-reducer";
-import {API, tryCatch} from "../../api/api";
+import {changeCutout, changeError, changeIsDone, changeUnError, setStasus, theme} from "../../redux/settings-reducer";
 import Loader from "../Loader/Loader";
 
 class Environment extends React.Component {
 
   state = {
     checkedValue: true,
-    unError: false,
-    error: false
   }
 
 
@@ -31,25 +28,16 @@ class Environment extends React.Component {
 
   onButtonClick = () => {
     this.props.changeCutout(true)
-    tryCatch(() => API.f(this.props.isDone)).then(res => {
-      if (res.status === 200) {
-        this.setState({
-          unError: true
-        })
-      } else {
-        this.setState({error: true})
-      }
-      this.props.changeCutout(false)
-    })
+    this.props.setStasus(this.props.isDone)
   }
 
 
-  onUnerrorClick = () => {
-    this.setState({unError: false})
+  onUnerrorPointer = () => {
+    this.props.changeUnError(false)
   }
 
-  onErrorClick = () => {
-    this.setState({error: false})
+  onErrorPointer = () => {
+    this.props.changeError(false)
   }
 
   render() {
@@ -57,16 +45,16 @@ class Environment extends React.Component {
 
     return (
       <div className={styles.environment}>
-        {this.state.unError
+        {this.props.unError
           ? <span
             className={styles.unError}
-            onPointerEnter={this.onUnerrorClick}>Поздравляю, запрос успешен!</span>
+            onPointerEnter={this.onUnerrorPointer}>Поздравляю, запрос успешен!</span>
           : null
         }
-        {this.state.error
+        {this.props.error
           ? <span
             className={styles.error}
-            onPointerEnter={this.onErrorClick}>К сожалению возникла ошибка:(</span>
+            onPointerEnter={this.onErrorPointer}>К сожалению возникла ошибка:(</span>
           : null
         }
         <h3>Выберите тему:</h3>
@@ -113,8 +101,17 @@ let mapStateToProps = (state) => {
     style: state.settingPage.style,
     isDone: state.settingPage.isDone,
     cutout: state.settingPage.cutout,
+    unError: state.settingPage.unError,
+    error: state.settingPage.error,
   }
 }
 
 
-export default connect(mapStateToProps, {theme, changeIsDone, changeCutout})(Environment);
+export default connect(mapStateToProps, {
+  theme,
+  changeIsDone,
+  setStasus,
+  changeCutout,
+  changeUnError,
+  changeError
+})(Environment);
