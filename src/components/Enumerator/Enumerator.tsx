@@ -27,7 +27,7 @@ class Enumerator extends React.Component<{}, StateType> {
 
     state: StateType = {
         tasks: [
-            {created: "", updated: "", finished: "", id: 1, isDone: true}
+            {title: "", priority: "", created: "", updated: "", finished: "", id: 1, isDone: true}
         ],
         filterValue: "All",
         nowTime: new Date().toLocaleTimeString(),

@@ -1,48 +1,60 @@
-import React from 'react';
+import React, {ChangeEvent} from 'react';
 import Select from "./Select/Select";
+import {TaskType} from "../../../../types/entities";
 
+type StateType = {
+  editeMode: boolean
+}
 
+type OnPropsType = {
+  task: TaskType
+  nowTime: string
+  changePriority: (taskId: number, newPriority: string) => void
+  deliteTask: (taskId: number) => void
+  changeTitle: (taskId: number, newTitle: string) => void
+  changeStatus: (taskId: number, isDone: boolean) => void
+  changeSelect: (taskId: number, newPriority: string) => void
+}
 
-class TodoListTask extends React.Component {
-
+class TodoListTask extends React.Component<OnPropsType, StateType> {
 
   state = {
     editeMode: false,
   }
 
-
   onPriorityModeL = () => {
     this.props.changePriority(this.props.task.id, "Middle")
+  }
 
-  };
   onPriorityModeM = () => {
     this.props.changePriority(this.props.task.id, "Height")
-
   }
+
   onPriorityModeH = () => {
     this.props.changePriority(this.props.task.id, "Low")
-
   }
 
   activateEditMode = () => {
-    this.setState({editeMode: true, updated: this.props.nowTime})
+    this.setState({editeMode: true})
   }
+
   deActivateEditMode = () => {
     this.setState({editeMode: false})
   }
-  onIsDoneChanged = (e) => {
+
+  onIsDoneChanged = (e: ChangeEvent<HTMLInputElement>) => {
     this.props.changeStatus(this.props.task.id, e.currentTarget.checked);
-  };
-  onTitleChanged = (e) => {
+  }
+
+  onTitleChanged = (e: ChangeEvent<HTMLInputElement>) => {
     this.props.changeTitle(this.props.task.id, e.currentTarget.value);
-  };
+  }
+
   onDeliteTask = () => {
     this.props.deliteTask(this.props.task.id)
   }
 
   render = () => {
-
-
 
     let changePriority
     if (this.props.task.priority === "Low") {

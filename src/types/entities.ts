@@ -15,4 +15,6 @@ export type TaskType = {
     finished: string
     id: number
     isDone: boolean
+    priority: string
+    title: string
 }
