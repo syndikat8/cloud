@@ -57,7 +57,6 @@ export const changeError = (error) => ({type: ERROR, error})
 export const setStasus = (isDone) => (dispatch) => {
 
   tryCatch(() => API.f(isDone)).then(res => {
-
     if (res.status === 200) {
       dispatch(changeUnError(true))
     } else {

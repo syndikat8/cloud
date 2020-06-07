@@ -16,6 +16,7 @@ export const API = {
 export const tryCatch = async (f) => {
   try {
     const response = await f();
+    debugger
     console.log('answer: ', response.data);
     return response;
   } catch (e) {
