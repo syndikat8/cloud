@@ -12,8 +12,27 @@ import {connect} from "react-redux";
 import {setLoading} from "./redux/loading-reducer";
 import Environment from "./components/Environment/Environment";
 import styles from "./Container.module.css"
+import {AppStateType} from "./redux/store";
 
-class App extends React.Component {
+type StateType = {
+  nameQualities: Array<{
+    qualitie: string
+    id: string
+  }>
+}
+
+type MapStatePropsType = {
+  loading: boolean
+  style: string
+}
+
+type MapDispatchPropsType = {
+  setLoading: (loading: boolean) => void
+}
+
+type PropsType = MapStatePropsType & MapDispatchPropsType
+
+class App extends React.Component<PropsType,StateType> {
 
   componentDidMount() {
     setTimeout(() => {
@@ -22,7 +41,7 @@ class App extends React.Component {
   }
 
 
-  state = {
+  state: StateType = {
     nameQualities: [
       {qualitie: "Punctual", id: "1"},
       {qualitie: "Sportsman", id: "2"},
@@ -52,11 +71,11 @@ class App extends React.Component {
   };
 }
 
-let mapStateToProps = (state) => {
+let mapStateToProps = (state: AppStateType) => {
   return {
     loading: state.loadingPage.loading,
     style: state.settingPage.style
   }
 }
 
-export default connect(mapStateToProps, {setLoading})(App)
+export default connect<MapStatePropsType, MapDispatchPropsType, {}, AppStateType>(mapStateToProps, {setLoading})(App)
