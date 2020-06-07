@@ -1,3 +1,5 @@
+import {ReducerType} from "./settings-reducer";
+
 const SET_LOADING = "SET_LOADING"
 
 type InitialStateType = {
@@ -8,7 +10,7 @@ let initialState: InitialStateType = {
   loading: false
 }
 
-const settingsReducer = (state: InitialStateType = initialState, action: any) => {
+const settingsReducer = (state: InitialStateType = initialState, action: ReducerType) => {
  switch (action.type) {
    case SET_LOADING:
      return {
@@ -17,10 +19,12 @@ const settingsReducer = (state: InitialStateType = initialState, action: any) =>
    default:
      return state
  }
-
 }
+export default settingsReducer;
 
-type SetLoading = {
+
+
+export type SetLoading = {
     type: typeof SET_LOADING
     loading: boolean
 }
@@ -28,4 +32,3 @@ type SetLoading = {
 export const setLoading = (loading: boolean): SetLoading => ({type:SET_LOADING, loading})
 
 
-export default settingsReducer;
