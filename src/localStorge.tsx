@@ -1,4 +1,4 @@
-export const save = (state) => {
+export const save = (state: object) => {
   localStorage.setItem("our-state", JSON.stringify(state))
 }
 
