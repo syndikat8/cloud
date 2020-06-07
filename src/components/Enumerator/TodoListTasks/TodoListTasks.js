@@ -1,19 +1,18 @@
 import React from 'react';
 import TodoListTask from "./TodoListTask/TodoListTask";
-import PropTypes from 'prop-types';
 
 
-class TodoListTasks extends React.Component {
-  render = () => {
-    let taskElements = this.props.tasks.map(task => {
+const TodoListTasks = (props) => {
+
+    let taskElements = props.tasks.map(task => {
       return <TodoListTask
-        nowTime={this.props.nowTime}
+        nowTime={props.nowTime}
         key={task.id}
-        changePriority={this.props.changePriority}
-        deliteTask={this.props.deliteTask}
-        changeTitle={this.props.changeTitle}
-        changeStatus={this.props.changeStatus}
-        changeSelect={this.props.changeSelect}
+        changePriority={props.changePriority}
+        deliteTask={props.deliteTask}
+        changeTitle={props.changeTitle}
+        changeStatus={props.changeStatus}
+        changeSelect={props.changeSelect}
         task={task}
       />
     });
@@ -22,11 +21,7 @@ class TodoListTasks extends React.Component {
         {taskElements}
       </div>
     );
-  }
 }
 
 export default TodoListTasks;
-TodoListTasks.proTypes = {
-  tasks: PropTypes.object
-}
 
