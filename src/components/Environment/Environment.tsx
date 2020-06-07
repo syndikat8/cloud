@@ -50,7 +50,6 @@ class Environment extends React.Component<PropsType, StateType> {
     this.props.changeIsDone(e.currentTarget.checked)
   }
 
-
   onButtonClick = () => {
     this.props.changeCutout(true)
     this.props.setStatus(this.props.isDone)
