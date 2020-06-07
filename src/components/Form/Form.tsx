@@ -1,13 +1,20 @@
-import React from 'react';
+import React, {ChangeEvent} from 'react';
 import styles from './Form.module.css';
 import Button from "./Button/Button";
 import Input from "./Input/Input";
 import Span from "./Span/Span";
 import InputIN from "./InputIN/InputIN";
 
-class Form extends React.Component {
+type StateType = {
+  spanNumber: number
+  countValueInput: Array<string>
+  colorInput: string
+  title: string
+}
 
-  state = {
+class Form extends React.Component<{}, StateType> {
+
+  state: StateType = {
     spanNumber: 0,
     countValueInput: [],
     colorInput: "paint",
@@ -25,11 +32,11 @@ class Form extends React.Component {
   };
 
 
-  onTitleChanged = (e) => {
+  onTitleChanged = (e: ChangeEvent<HTMLInputElement>) => {
     this.setState({title: e.currentTarget.value, colorInput: ""})
   };
 
-  addNewMessag = (count) => {
+  addNewMessag = (count: string) => {
     let counts = [...this.state.countValueInput, count];
     this.setState({
       countValueInput: counts,
