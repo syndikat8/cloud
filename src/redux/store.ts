@@ -4,11 +4,15 @@ import settingsReducer from "./settings-reducer";
 import thunkMiddleware from "redux-thunk";
 
 
-const reducers = combineReducers({
+const rootReducer = combineReducers({
     loadingPage: loadingReducer,
     settingPage: settingsReducer,
 })
 
-const store = createStore(reducers,applyMiddleware(thunkMiddleware))
+
+type rootReducerType = typeof rootReducer
+export type AppStateType = ReturnType<rootReducerType>
+
+const store = createStore(rootReducer,applyMiddleware(thunkMiddleware))
 
 export default store
