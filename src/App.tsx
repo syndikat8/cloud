@@ -70,7 +70,7 @@ class App extends React.Component<PropsType,StateType> {
   };
 }
 
-let mapStateToProps = (state: AppStateType) => {
+let mapStateToProps = (state: AppStateType): MapStatePropsType => {
   return {
     loading: state.loadingPage.loading,
     style: state.settingPage.style

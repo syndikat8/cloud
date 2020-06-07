@@ -1,34 +1,59 @@
-import React from "react";
+import React, {ChangeEvent} from "react";
 import styles from "./Environment.module.css"
 import {connect} from "react-redux";
-import {changeCutout, changeError, changeIsDone, changeUnError, setStasus, theme} from "../../redux/settings-reducer";
+import {changeCutout, changeError, changeIsDone, changeUnError, setStatus, theme} from "../../redux/settings-reducer";
 import Loader from "../Loader/Loader";
+import {AppStateType} from "../../redux/store";
 
-class Environment extends React.Component {
+type StateType = {
+  checkedValue: boolean
+}
 
-  state = {
-    checkedValue: true,
+type MapDispatchPropsType = {
+  theme: (themeClassic: string) => void
+  changeIsDone: (isDone: boolean) => void
+  changeCutout: (cutout: boolean) => void
+  setStatus: (isDone: boolean) => void
+  changeUnError: (unError: boolean) => void
+  changeError: (error: boolean) => void
+}
+
+type MapStatePropsType = {
+  themeClassic: string
+  themeBlack: string
+  style: string
+  isDone: boolean
+  cutout: boolean
+  unError: boolean
+  error: boolean
+}
+
+type PropsType = MapDispatchPropsType & MapStatePropsType
+
+class Environment extends React.Component<PropsType, StateType> {
+
+  state: StateType = {
+    checkedValue: true
   }
 
-
-  onChangeStyleClassic = (e) => {
+  onChangeStyleClassic = (e: ChangeEvent<HTMLInputElement>) => {
     this.props.theme(this.props.themeClassic)
     this.setState({checkedValue: e.currentTarget.checked})
   }
 
-  onChangeStyleBlack = (e) => {
+  onChangeStyleBlack = (e: ChangeEvent<HTMLInputElement>) => {
     this.props.theme(this.props.themeBlack)
     this.setState({checkedValue: e.currentTarget.checked})
   }
 
-  onChangeCheked = (e) => {
+  onChangeCheked = (e: ChangeEvent<HTMLInputElement>) => {
     this.props.changeIsDone(e.currentTarget.checked)
   }
 
 
   onButtonClick = () => {
     this.props.changeCutout(true)
-    this.props.setStasus(this.props.isDone)
+    this.props.setStatus(this.props.isDone)
   }
 
 
@@ -94,7 +119,7 @@ class Environment extends React.Component {
 
 }
 
-let mapStateToProps = (state) => {
+let mapStateToProps = (state: AppStateType): MapStatePropsType => {
   return {
     themeClassic: state.settingPage.themeClassic,
     themeBlack: state.settingPage.themeBlack,
@@ -107,10 +132,10 @@ let mapStateToProps = (state) => {
 }
 
 
-export default connect(mapStateToProps, {
+export default connect<MapStatePropsType, MapDispatchPropsType, {}, AppStateType>(mapStateToProps, {
   theme,
   changeIsDone,
-  setStasus,
+  setStatus,
   changeCutout,
   changeUnError,
   changeError

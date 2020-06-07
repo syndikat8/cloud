@@ -99,7 +99,7 @@ type ChangeErrorType = {
 export const changeError = (error: boolean): ChangeErrorType => ({type: ERROR, error})
 
 
-export const setStasus = (isDone: boolean) => (dispatch: Dispatch<ReducerType>) => {
+export const setStatus = (isDone: boolean) => (dispatch: Dispatch<ReducerType>) => {
 
     tryCatch(() => API.f(isDone)).then(res => {
         if (res.status === 200) {
