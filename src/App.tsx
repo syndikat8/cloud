@@ -13,13 +13,12 @@ import {setLoading} from "./redux/loading-reducer";
 import Environment from "./components/Environment/Environment";
 import styles from "./Container.module.css"
 import {AppStateType} from "./redux/store";
+import { QualitieType } from './types/entities';
 
 type StateType = {
-  nameQualities: Array<{
-    qualitie: string
-    id: string
-  }>
+  nameQualities: Array<QualitieType>
 }
+
 
 type MapStatePropsType = {
   loading: boolean

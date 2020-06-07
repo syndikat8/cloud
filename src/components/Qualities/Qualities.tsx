@@ -1,9 +1,12 @@
 import React from 'react';
 import styles from './Qualities.module.css';
+import {QualitieType} from "../../types/entities";
 
+type OnPropsType = {
+  nameQualities: Array<QualitieType>
+}
 
-
-const Qualities = (props) => {
+const Qualities = (props: OnPropsType) => {
 
 
   let newNameQualities = props.nameQualities.map( (mq,index) => {
