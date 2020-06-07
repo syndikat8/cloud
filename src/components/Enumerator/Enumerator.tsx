@@ -4,16 +4,10 @@ import TodoListHeader from "./TodoListHeader/TodoListHeader";
 import TodoListTasks from "./TodoListTasks/TodoListTasks";
 import TodoListFooter from "./TodoListFooter/TodoListFooter";
 import {restore, save} from "../../localStorge";
-import { UpdateTaskType } from '../../types/entities';
+import {TaskType, UpdateTaskType} from '../../types/entities';
 
 type StateType = {
-    tasks: Array<{
-        created: string
-        updated: string
-        finished: string
-        id: number
-        isDone: boolean
-    }>
+    tasks: Array<TaskType>
     filterValue: string
     nowTime: string
 }

@@ -8,3 +8,11 @@ export type UpdateTaskType = {
     priority?: string
     title?: string
 }
+
+export type TaskType = {
+    created: string
+    updated: string
+    finished: string
+    id: number
+    isDone: boolean
+}

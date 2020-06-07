@@ -1,8 +1,18 @@
 import React from 'react';
 import TodoListTask from "./TodoListTask/TodoListTask";
+import {TaskType} from "../../../types/entities";
 
+type OnPropsType = {
+    tasks: Array<TaskType>
+    nowTime: string
+    changePriority: (taskId: number, newPriority: string) => void
+    deliteTask: (taskId: number) => void
+    changeTitle: (taskId: number, newTitle: string) => void
+    changeStatus: (taskId: number, isDone: boolean) => void
+    changeSelect: (taskId: number, newPriority: string) => void
+}
 
-const TodoListTasks = (props) => {
+const TodoListTasks = (props: OnPropsType) => {
 
     let taskElements = props.tasks.map(task => {
       return <TodoListTask
@@ -24,4 +34,3 @@ const TodoListTasks = (props) => {
 }
 
 export default TodoListTasks;
-
