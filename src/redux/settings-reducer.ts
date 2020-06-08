@@ -30,7 +30,7 @@ let initialState: InitialStateType = {
     error: false
 }
 
-const settingsReducer = (state: InitialStateType = initialState, action: ReducerType) => {
+const settingsReducer = (state = initialState, action: ReducerType): InitialStateType => {
     switch (action.type) {
         case STYLE:
             return {

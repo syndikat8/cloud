@@ -10,7 +10,7 @@ let initialState: InitialStateType = {
   loading: false
 }
 
-const settingsReducer = (state: InitialStateType = initialState, action: ReducerType) => {
+const settingsReducer = (state = initialState, action: ReducerType): InitialStateType => {
  switch (action.type) {
    case SET_LOADING:
      return {
