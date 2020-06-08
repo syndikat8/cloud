@@ -4,7 +4,7 @@ const instance = axios.create({
   baseURL: "https://neko-cafe-back.herokuapp.com/"
 })
 
-type Data = {
+type DataType = {
   errorText: string
   info: string
   yourBody: {success: boolean}
@@ -13,7 +13,7 @@ type Data = {
 
 type CommonApiType = {
   status: number
-  data: Data
+  data: DataType
 }
 
 export const API = {
@@ -27,13 +27,10 @@ export const API = {
 export const tryCatch = async (f: any) => {
   try {
     const response = await f();
-    debugger
     console.log('answer: ', response.data);
     return response;
   } catch (e) {
-    debugger
     console.log('error: ', {...e});
     return e.response || e.message;
-    debugger
   }
 }

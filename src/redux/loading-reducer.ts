@@ -22,13 +22,10 @@ const settingsReducer = (state = initialState, action: ReducerType): InitialStat
 }
 export default settingsReducer;
 
-
-
 export type SetLoading = {
     type: typeof SET_LOADING
     loading: boolean
 }
-
 export const setLoading = (loading: boolean): SetLoading => ({type:SET_LOADING, loading})
 
 
