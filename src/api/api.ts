@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, {AxiosResponse} from "axios";
 
 const instance = axios.create({
   baseURL: "https://neko-cafe-back.herokuapp.com/"
@@ -11,20 +11,16 @@ type DataType = {
   yourQuery: {}
 }
 
-type CommonApiType = {
-  status: number
-  data: DataType
-}
 
 export const API = {
   f(isDone: boolean) {
-    return instance.post<CommonApiType>("auth/test",
+    return instance.post<DataType>("auth/test",
       {success: isDone}
     )
   },
 }
 
-export const tryCatch = async (f: any) => {
+export const tryCatch = async (f: () => Promise<AxiosResponse<DataType>>) => {
   try {
     const response = await f();
     console.log('answer: ', response.data);
